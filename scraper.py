@@ -28,7 +28,7 @@ def read_url(url):
   # Write out to the sqlite database using scraperwiki library
   todays_date = str(datetime.now())
   #scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
-   scraperwiki.scrape(url)
+  scraperwiki.scrape(url)
   for file_name in listFD(url,''):
       print(file_name,todays_date)
       scraperwiki.sqlite.save(unique_keys=[file_name], data={file_name: file_name, "d": todays_date })
