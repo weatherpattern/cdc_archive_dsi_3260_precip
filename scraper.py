@@ -18,8 +18,8 @@ from datetime import datetime
 def main(url):
   # Write out to the sqlite database using scraperwiki library
   scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
-  f = FTP(url)
-  f.connect("localhost")
+  f = FTP()
+  f.connect(url)
   f.login()
   ls = []
   f.retrlines('MLSD', ls.append)
