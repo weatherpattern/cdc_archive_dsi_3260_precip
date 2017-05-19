@@ -31,7 +31,8 @@ def read_url(url):
       url_new = url_new.replace(" ","%20")
       if(file_name[-1]=='/' and file_name[0]!='.'):
           read_url(url_new)
-      scraperwiki.sqlite.save(unique_keys=[file_name], data={"f": file_name, "d": todays_date })
+      print(file_name,todays_date,url_new)
+      #scraperwiki.sqlite.save(unique_keys=[file_name], data={"f": file_name, "d": todays_date })
 if __name__ == '__main__':
   url ="https://www1.ncdc.noaa.gov/pub/data/15min_precip-3260"
   #
