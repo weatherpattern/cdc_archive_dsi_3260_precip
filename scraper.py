@@ -15,16 +15,22 @@ from datetime import datetime
 # called "data.sqlite" in the current working directory which has at least a table
 # called "data".
 
-def main(url):
+def read_url(url):
   # Write out to the sqlite database using scraperwiki library
-  scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
-  f = FTP(url)
-  f.login()
-  ls = []
-  f.retrlines('MLSD', ls.append)
   todays_date = str(datetime.now())
-  for entry in ls:
-      scraperwiki.sqlite.save(unique_keys=[entry], data={"f": entry, "d": todays_date })
+  scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
+  url = url.replace(" ","%20")
+  req = Request(url)
+  a = urlopen(req).read()
+  soup = BeautifulSoup(a, 'html.parser')
+  x = (soup.find_all('a'))
+  for i in x:
+      file_name = i.extract().get_text()
+      url_new = url + file_name
+      url_new = url_new.replace(" ","%20")
+      if(file_name[-1]=='/' and file_name[0]!='.'):
+          read_url(url_new)
+      scraperwiki.sqlite.save(unique_keys=[file_name], data={"f": file_name, "d": todays_date,"u": url_new })
 if __name__ == '__main__':
   url ="https://www1.ncdc.noaa.gov/pub/data/15min_precip-3260"
   #
@@ -32,4 +38,4 @@ if __name__ == '__main__':
   # root = lxml.html.fromstring(html)
   # root.cssselect("div[align='left']")
   #
-  main(url)
+  read_url(url)
