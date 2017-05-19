@@ -30,7 +30,7 @@ def read_url(url):
   scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
   for file_name in listFD(url,'txt'):
       print(file_name,todays_date)
-      scraperwiki.sqlite.save(unique_keys=['txt'], data={"f": file_name, "d": todays_date })
+      scraperwiki.sqlite.save(unique_keys=[file_name], data={file_name: file_name, "d": todays_date })
 if __name__ == '__main__':
   url ="https://www1.ncdc.noaa.gov/pub/data/15min_precip-3260"
   #
