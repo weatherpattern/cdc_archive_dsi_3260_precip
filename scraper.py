@@ -29,9 +29,9 @@ def read_url(url):
   todays_date = str(datetime.now())
   #scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
   scraperwiki.scrape(url)
-  for file_name in listFD(url,''):
+  for i, file_name in enumerate(listFD(url,'')):
       print(file_name,todays_date)
-      scraperwiki.sqlite.save(unique_keys=[file_name], data={file_name: file_name, "d": todays_date })
+      scraperwiki.sqlite.save(unique_keys=[i], data={file_name: file_name, "d": todays_date })
 if __name__ == '__main__':
   url ="https://www1.ncdc.noaa.gov/pub/data/15min_precip-3260"
   #
