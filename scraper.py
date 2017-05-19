@@ -3,7 +3,7 @@
 
 import scraperwiki
 from datetime import datetime
-from urllib2 import Request, urlopen
+import requests
 from bs4 import BeautifulSoup
 # import lxml.html
 #
