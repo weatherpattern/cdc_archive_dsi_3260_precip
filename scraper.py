@@ -2,8 +2,9 @@
 # including some code snippets below that you should find helpful
 
 import scraperwiki
-from ftplib import FTP
 from datetime import datetime
+from urllib.request import Request, urlopen, urlretrieve
+from bs4 import BeautifulSoup
 # import lxml.html
 #
 # # An arbitrary query against the database
