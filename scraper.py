@@ -5,6 +5,7 @@ import scraperwiki
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+
 # import lxml.html
 #
 # # An arbitrary query against the database
@@ -27,8 +28,8 @@ def listFD(url, ext=''):
 def read_url(url):
   # Write out to the sqlite database using scraperwiki library
   todays_date = str(datetime.now())
-  scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist"})
-  scraperwiki.scrape(url)
+  html=scraperwiki.scrape(url)
+  scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "eben pendleton", "occupation": " environmental scientist","html": html})  
   for i, file_name in enumerate(listFD(url,'')):
       print(file_name,todays_date)
       scraperwiki.sqlite.save(unique_keys=[file_name], data={"u": file_name, "d": todays_date })
